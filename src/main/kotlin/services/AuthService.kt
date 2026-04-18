@@ -47,11 +47,10 @@ class AuthService(
         request.password = hashPassword(request.password)
         val userId = userRepository.create(request.toEntity())
 
-        // PERBAIKAN: userId dipaksa menjadi String agar sesuai dengan ekspektasi Frontend Flutter
         val response = DataResponse(
             "success",
             "Berhasil melakukan pendaftaran",
-            mapOf(Pair("userId", userId.toString()))
+            mapOf(Pair("userId", userId))
         )
         call.respond(response)
     }
